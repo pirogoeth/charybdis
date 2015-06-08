@@ -1,0 +1,16 @@
+image: gcc:4.8
+git:
+  path: github.com/pirogoeth/charybdis
+script:
+  - apt-get update 2>&1 1>/dev/null
+  - apt-get -fy install libc6 libgcrypt11 libgnutls28 libsqlite3-0 zlib1g libz1 adduser
+  - ./configure
+  - make install
+notify:
+  irc:
+    channel: #dev
+    nick: drone-charybdis
+    server: "irc.maio.me:6667"
+    onstarted: true
+    onsuccess: true
+    onfailure: true
